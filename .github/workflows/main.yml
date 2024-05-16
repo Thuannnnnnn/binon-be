@@ -1,0 +1,41 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to cPanel
+        env:
+          CPANEL_HOST: shopcuathuan.shop
+          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+          CPANEL_PASSWORD: ${{ secrets.CPANEL_PASSWORD }}
+        run: |
+          # Replace the following commands with your deployment steps
+          # For example, you might use cPanel's Git Version Control interface
+          # to pull changes into your web directory.
+          echo "Deploying to cPanel..."
+          # Your deployment commands go here
+
+      - name: Restart Node.js app
+        run: |
+          # If you need to restart your Node.js app, use the appropriate command
+          # For example, if you're using PM2:
+          pm2 restart my-app
+

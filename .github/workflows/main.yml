@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
           protocol: ftps
-          local-dir: ./src
+          local-dir: ./src/

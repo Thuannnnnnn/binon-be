@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.CPANEL_PASSWORD }}
           protocol: ftps
           local-dir: |
-            src
-            package.json
-            package-lock.json
+            ./src/
+            ./package.json/
+            ./package-lock.json/
          

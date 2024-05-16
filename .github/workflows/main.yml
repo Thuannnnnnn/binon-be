@@ -1,25 +1,30 @@
-name: Deploy to cPanel
-
-on:
+on: 
   push:
     branches:
-      - main  # Thay 'main' bằng tên nhánh bạn muốn triển khai
+      - main
+name: 🚀 Deploy website on push
 
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
 
-      - name: Install cPanel CLI
-        run: npm install -g cpanel-cli  # Đảm bảo cPanel CLI đã được cài đặt trước
-
-      - name: Deploy to cPanel
-        env:
-          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
-          CPANEL_PASSWORD: ${{ secrets.CPANEL_PASSWORD }}
-        run: |
-          echo "Committing changes to cPanel git version control..."
-          cpanel-git push --all
+    - name: Use Node.js 20
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.shopcuathuan.shop
+        username:  ${{ secrets.CPANEL_USERNAME }}
+        password: ${{ secrets.CPANEL_PASSWORD }}
+        protocol: ftps

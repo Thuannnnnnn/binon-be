@@ -30,7 +30,7 @@ app.get('/api/hello', (req, res) => {
     database: process.env.DB_NAME,
   });
   connection.connect((err) => {
-    if (err) return res.send('err');
+    if (err) return res.send(err);
 
     res.send('Connected to the MySQL server.');
   });

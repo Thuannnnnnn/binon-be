@@ -17,7 +17,7 @@ app.get('/api/hello', async (req, res) => {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
     });
-    res.send('Connected to the MySQL server.');
+    res.send('Connected to the MySQL server.1');
     connection.end(); // Close the connection
   } catch (error) {
     res.status(500).send('Error connecting to the MySQL server: ' + error.message);

@@ -32,7 +32,7 @@ jspm_packages/
 # dotenv environment variables file
 .env
 
-# Parcel-bundler cache (https://parceljs.org/)
+# Parcel-bundler cache
 .cache
 
 # Next.js build output

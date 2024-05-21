@@ -7,7 +7,11 @@ var cors = require('cors')
 app.use(cors('shopcuathuan.shop'))
 app.use(express.json())
 const product = require('./routes/product')
+const upload = require('./routes/upload')
+const auth = require('./routes/auth')
 app.use('/api/product', product)
+app.use('/api/upload', upload)
+app.use('/api/auth', auth)
 app.get('/api/hello', async (req, res) => {
   try {
     const connection = await mysql.createConnection({
@@ -20,7 +24,7 @@ app.get('/api/hello', async (req, res) => {
     res.send('Connected to the MySQL server.1');
     connection.end(); // Close the connection
   } catch (error) {
-    res.send('Error connecting to the MySQL server: ' + error.message+process.env.DB_HOST);
+    res.send('Error connecting to the MySQL server: ' + error.message + process.env.DB_HOST);
   }
 });
 

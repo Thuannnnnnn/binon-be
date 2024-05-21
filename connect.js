@@ -11,15 +11,15 @@ async function createConnection() {
     });
 }
 
-async function query(sql, params = []) {
+async function query(sql, values = []) {
     const connection = await createConnection();
     try {
-        const results = await connection.execute(sql, params);
-        return results;
-    } catch (error) {
-        throw error;
-    } finally {
-        await connection.end();
+
+        return [rows] = await connection.execute(sql, values);
+
+
+    } catch (err) {
+        console.log(err);
     }
 }
 

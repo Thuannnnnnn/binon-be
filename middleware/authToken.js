@@ -10,7 +10,6 @@ const verify = () => {
         if (!token) {
             return res.status(401).json({ error: 'Unauthorized: Missing token' });
         }
-        console.log(token)
         const tokenDes = verifyToken(token)
 
         if (!tokenDes) {

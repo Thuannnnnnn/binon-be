@@ -11,7 +11,6 @@ const verify = () => {
             return res.status(401).json({ error: 'Unauthorized: Missing token' });
         }
         const tokenDes = verifyToken(token)
-
         if (!tokenDes) {
             return res.status(403).json({ error: 'Unauthorized' });
         }

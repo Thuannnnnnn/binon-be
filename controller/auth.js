@@ -1,5 +1,5 @@
 const authModel = require('../model/auth');
-const { generateToken } = require('../utility/jwt');
+const { generateToken, verifyToken } = require('../utility/jwt');
 const authController = {
     async authCheck(req, res) {
         try {
@@ -31,12 +31,29 @@ const authController = {
                 httpOnly: true,
                 maxAge: 7200000
             });
-            res.status(200).json({ message: 'Login successful' });
+            res.status(200).json({ token: token });
         } catch (error) {
             console.error('Error in authCheck:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+    async validate(req, res) {
+
+        if (!req.headers.authorization) {
+            return res.status(401).json({ error: 'Unauthorized: Missing token' });
+        }
+        const token = req.headers.authorization.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ error: 'Unauthorized: Missing token' });
+        }
+        const tokenDes = verifyToken(token)
+
+        if (!tokenDes) {
+            return res.status(403).json({ error: 'Unauthorized' });
+        }
+        res.status(200).send(tokenDes);
+
+    }
 };
 
 module.exports = authController;

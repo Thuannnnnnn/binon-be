@@ -17,7 +17,7 @@ router.post('/product', upload.single('file'), (req, res) => {
     if (req.file) {
         const fileUrl = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
         console.log(fileUrl)
-        res.send(fileUrl);
+        res.status(200).send(fileUrl);
     } else {
         res.status(400).send('No file uploaded');
     }

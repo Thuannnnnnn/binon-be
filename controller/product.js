@@ -14,7 +14,7 @@ const productController = {
         try {
             const productData = req.body;
             await ProductModel.addProduct(productData);
-            res.status(200);
+            res.status(200).json({message: "success"});
         } catch (error) {
             console.error('Failed to add product:', error);
             res.status(500).json({ error: 'Failed to add product' });

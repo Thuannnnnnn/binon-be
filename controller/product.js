@@ -13,8 +13,8 @@ const productController = {
     async addProduct(req, res) {
         try {
             const productData = req.body;
-            const product = await ProductModel.addProduct(productData);
-            res.status(201).json(product);
+            await ProductModel.addProduct(productData);
+            res.status(200);
         } catch (error) {
             console.error('Failed to add product:', error);
             res.status(500).json({ error: 'Failed to add product' });

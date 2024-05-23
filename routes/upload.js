@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const { verify } = require('../middleware/authToken')
 const router = express.Router();
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -13,11 +14,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/product', upload.single('file'), (req, res) => {
+router.post('/product', verify(), upload.single('file'), (req, res) => {
     if (req.file) {
         const fileUrl = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
         console.log(fileUrl)
-        res.status(200).send(fileUrl);
+        res.send(fileUrl);
     } else {
         res.status(400).send('No file uploaded');
     }

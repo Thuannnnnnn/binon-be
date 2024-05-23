@@ -10,7 +10,17 @@ const productController = {
             res.status(500).json({ error: 'Failed to retrieve products' });
         }
     },
-    // Bạn có thể thêm các phương thức khác cho controller ở đây nếu cần
+    async addProduct(req, res) {
+        try {
+            const productData = req.body;
+            const product = await ProductModel.addProduct(productData);
+            res.status(201).json(product);
+        } catch (error) {
+            console.error('Failed to add product:', error);
+            res.status(500).json({ error: 'Failed to add product' });
+        }
+    },
+
 };
 
 module.exports = productController;

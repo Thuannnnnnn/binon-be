@@ -34,7 +34,7 @@ router.put('/product/:oldFileUrl', verify(), upload.single('file'), (req, res) =
     fs.unlink(oldFilePath, (err) => {
         if (err) {
             console.error(err);
-            return res.status(500).send('Error deleting old file');
+            return res.status(500).send(err);
         }
 
         const newFileUrl = 'https://' + req.get('host') + '/uploads/' + req.file.filename;

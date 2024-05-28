@@ -4,7 +4,7 @@ const port = 3000
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 var cors = require('cors')
-app.use(cors('shopcuathuan.shop'))
+app.use(cors('shopcuathuan.shop',))
 app.use(express.json())
 const product = require('./routes/product')
 const upload = require('./routes/upload')

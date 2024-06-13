@@ -49,9 +49,9 @@ const productModel = {
         ]
       );
 
-      if (result.affectedRows === 0) {
-        throw new Error("No product found with the given ID to update.");
-      }
+      // if (result.affectedRows === 0) {
+      //   throw new Error("No product found with the given ID to update.");
+      // }
 
       console.log(result);
       return result;

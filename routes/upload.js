@@ -38,7 +38,7 @@ router.put('/product/:oldFileUrl', verify(), upload.single('file'), (req, res) =
             return res.status(500).send(err);
         }
 
-        const newFileUrl = 'https://' + req.get('host') + '/uploads/' + req.file.filename;
+        const newFileUrl = 'https://' + req.get('host') + '/uploads/' + oldFileUrl;
         console.log(newFileUrl);
         res.send(newFileUrl);
     });
